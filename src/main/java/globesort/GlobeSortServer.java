@@ -81,7 +81,7 @@ public class GlobeSortServer {
 
     static class GlobeSortImpl extends GlobeSortGrpc.GlobeSortImplBase {
         @Override
-        public void ping(PingTime req, final StreamObserver<Empty> responseObserver) {
+        public void ping(PingTime req, final StreamObserver<PingTime> responseObserver) {
             long startTime = System.nanoTime();
             long endTime = System.nanoTime();
             long duration = (endTime - startTime) / 1000;
