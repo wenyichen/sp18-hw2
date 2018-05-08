@@ -42,7 +42,7 @@ public class GlobeSortClient {
         System.out.println("Pinging " + serverStr + "...");
         Empty res = serverStub.ping(Empty.newBuilder().build());
         System.out.println("Ping successful.");
-        long pingtime = res.Time;
+        long pingtime = res.getTime();
 
         long startTime = System.nanoTime();
         System.out.println("Requesting server to sort array");
@@ -52,7 +52,7 @@ public class GlobeSortClient {
         long endTime = System.nanoTime();
         long duration = (endTime - startTime) / 1000;
         System.out.println("Total Invocation Time (ms): " + duration);
-        long sorttime = response.Time;
+        long sorttime = response.getTime();
         System.out.println("Ping Time (ms): " + pingtime);
         System.out.println("Sort Time (ms): " + sorttime);
     }

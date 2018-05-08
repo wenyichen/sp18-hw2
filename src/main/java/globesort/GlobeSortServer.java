@@ -12,6 +12,9 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
+
+import com.google.protobuf.Empty;
+
 import java.util.stream.Collectors;
 
 public class GlobeSortServer {
@@ -82,7 +85,9 @@ public class GlobeSortServer {
             long startTime = System.nanoTime();
             long endTime = System.nanoTime();
             long duration = (endTime - startTime) / 1000;
-            Empty response = Empty.newBuilder().addTime(duration).build();
+            Empty builder = Empty.newBuilder();
+            builder.setTime(duration);
+            Empty response = builder.build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         }
@@ -98,7 +103,7 @@ public class GlobeSortServer {
             }
             long endTime = System.nanoTime();
             long duration = (endTime - startTime) / 1000;
-            responseBuilder.addTime(duration);
+            responseBuilder.setTime(duration);
             IntArray response = responseBuilder.build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
