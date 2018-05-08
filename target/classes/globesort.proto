@@ -10,10 +10,10 @@ service GlobeSort {
 }
 
 message Empty { 
-  int32 time = 1;
+  int64 time = 1;
 }
 
 message IntArray {
   repeated int32 values = 1;
-  int32 time = 2;
+  int64 time = 2;
 }

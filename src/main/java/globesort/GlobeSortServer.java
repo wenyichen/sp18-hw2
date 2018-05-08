@@ -85,9 +85,9 @@ public class GlobeSortServer {
             long startTime = System.nanoTime();
             long endTime = System.nanoTime();
             long duration = (endTime - startTime) / 1000;
-            Empty builder = Empty.newBuilder();
-            builder.setTime(duration);
-            Empty response = builder.build();
+            Empty.Builder resbuilder = Empty.newBuilder();
+            resbuilder.setTime(duration);
+            Empty response = resbuilder.build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         }
