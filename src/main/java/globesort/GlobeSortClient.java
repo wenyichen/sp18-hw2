@@ -40,7 +40,7 @@ public class GlobeSortClient {
 
     public void run(Integer[] values) throws Exception {
         System.out.println("Pinging " + serverStr + "...");
-        PingTime res = serverStub.ping(Empty.newBuilder().build());
+        PingTime res = serverStub.ping(PingTime.newBuilder().build());
         System.out.println("Ping successful.");
         long pingtime = res.getTime();
 
