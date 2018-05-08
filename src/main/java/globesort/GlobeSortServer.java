@@ -76,19 +76,26 @@ public class GlobeSortServer {
     static class GlobeSortImpl extends GlobeSortGrpc.GlobeSortImplBase {
         @Override
         public void ping(Empty req, final StreamObserver<Empty> responseObserver) {
-            Empty response = Empty.newBuilder().build();
+            long startTime = System.nanoTime();
+            long endTime = System.nanoTime();
+            long duration = (endTime - startTime) / 1000;
+            Empty response = Empty.newBuilder().addTime(duration).build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         }
 
         @Override
         public void sortIntegers(IntArray req, final StreamObserver<IntArray> responseObserver) {
+            long startTime = System.nanoTime();
             Integer[] values = req.getValuesList().toArray(new Integer[req.getValuesList().size()]);
             Arrays.sort(values);
             IntArray.Builder responseBuilder = IntArray.newBuilder();
             for(Integer val : values) {
                 responseBuilder.addValues(val);
             }
+            long endTime = System.nanoTime();
+            long duration = (endTime - startTime) / 1000;
+            responseBuilder.addTime(duration);
             IntArray response = responseBuilder.build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
